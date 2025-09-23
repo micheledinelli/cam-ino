@@ -26,7 +26,9 @@ $$ d = (v \times duration) / 2; $$
 
 where $v$ is the speed of sound in $cm/\mu s$ and duration is the duration of the sonic burst in $\mu s$. All divided by two because it is a round trip.
 To better approximate the real distance of an object Arduino Uno manages a DHT sensor that can measure ambient humidity and temperature. While the humidity is not quite negligible for the speed of sound calculation, the temperature is quite relevant. One can adjust the speed of sound calculation (in $m/s$) in the air parametrizing it with temperature and humidity:
+
 $$ v = 331.4 + (0.6 _ t) + (0.0124 _ h); $$
+
 where $t$ and $v$ are temperature and humidity respectively.
 
 ### Trigger Photo Shoot
@@ -54,6 +56,7 @@ If only I were able to paint the case would look like this.
 - DHT sensor consumes draws on average 1mA and at 5V it's 0.005W (negligible).
 
 Summing up on average the Wh consumption should be
+
 $$ (0.167W+0.45W+0.075W+0.005W) \times 1h \approx 0.70Wh $$
 
 With a USB Power Banks
