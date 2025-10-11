@@ -78,4 +78,4 @@ $$ \frac{10 \ \text{Wh}}{1,17 \ \text{Wh}} \approx 8\text{h} \ 30\text{m} $$
 
 I use a [Milwuakee M12 2.0Ah](https://www.hbushop.it/it/307--batteria-20ah-.html?cmp_id=21384869713&adg_id=&kwd=&device=c&gad_source=1&gad_campaignid=21374500512&gclid=Cj0KCQjwgKjHBhChARIsAPJR3xdxZlNA78KBWO5i21A_b1dezyT1E-73Q4lDh3nvZW2EYoKrW0qLmPgaAraOEALw_wcB) battery @12V. I supply power to the Arduino Uno R4 Minima's VIN pin and distribute voltage using 5V pin. 
 
-With this configuration cam-ino should lasts $\approx 20\text{h} \ 30\text{m}$.
+With this configuration cam-ino should last $\approx 20\text{h} \ 30\text{m}$.
