@@ -1,10 +1,14 @@
 # cam-ino
 
 <div align=center>
-<img src="assets/1.avif" height=250>
-<img src="assets/2.avif" height=250>
-<img src="assets/4.avif" height=250>
-<img src="assets/3.avif" height=250>
+<img src="assets/1.jpeg" height=250>
+<img src="assets/2.jpeg" height=250>
+<img src="assets/3.jpeg" height=250>
+</div>
+
+<div align=center>
+<img src="assets/picture_289159.jpg" width=250>
+<img src="assets/picture_429834.jpg" width=250>
 </div>
 
 ## Components:
@@ -37,29 +41,41 @@ When an object is quite near (~100cm) Arduino Uno sends a 5v signal to ESP32-CAM
 
 ## 3D Model Case
 
+### v1
+
 The components are "organized" inside a cool 3D printed box with its own cover. The two `.stl` filese are available in this repository and can be 3D printed in a couple of hours.
 
 - [3d-case/hunter-case.stl](3d-case/hunter-case.stl)
 - [3d-case/hunter-case-cover.stl](3d-case/hunter-case-cover.stl)
 
-The two holes at the top are for the HC-SR04 sensor, while the hole at the bottom is for the camera. Originally the camera was meant to be a [OV7670](https://futuranet.it/prodotto/ov7670-modulo-telecamera-digitale-per-arduino/?utm_source=Google+Shopping&utm_medium=cpc&utm_campaign=futuranet_gs&gad_source=1&gad_campaignid=17338545980&gclid=CjwKCAjwisnGBhAXEiwA0zEORypyMFtdpkvOQo0-dmvAMKoPEPmqwl3E5K_EAcJn--W6_fJySwDAihoCzq8QAvD_BwE) or a [TTL Serial JPEG Camera](https://www.adafruit.com/product/397) but for many reasons that was not the case.
+The two holes at the top are for the HC-SR04 sensor, while the hole at the bottom is for the camera. Originally the camera was meant to be a [OV7670](https://futuranet.it/prodotto/ov7670-modulo-telecamera-digitale-per-arduino/?utm_source=Google+Shopping&utm_medium=cpc&utm_campaign=futuranet_gs&gad_source=1&gad_campaignid=17338545980&gclid=CjwKCAjwisnGBhAXEiwA0zEORypyMFtdpkvOQo0-dmvAMKoPEPmqwl3E5K_EAcJn--W6_fJySwDAihoCzq8QAvD_BwE) or a [TTL Serial JPEG Camera](https://www.adafruit.com/product/397) but for many reasons that was not the *case*.
 
-If only I were able to paint the case would look like this.
-
-![render](assets/hunter-case-render.avif)
+### v2
+A second version of the case that fits the ESP32CAM is available at - [3d-case/hunter-case.stl](3d-case/hunter-case-v2.stl). It is compatible with the V1's cover.
 
 ## Energy Consumption
 
-- Arduino states that Uno R4 minima [consumes on average](https://docs.arduino.cc/resources/datasheets/ABX00080-datasheet.pdf) average current consumption while powered with USB-C (5v) and running the default firmware shipped with the board is 33.39mA which is 0.16695W.
-- ESP32-CAM [ranges](https://lastminuteengineers.com/getting-started-with-esp32-cam/) from 80 mA when not streaming video to around 100~160 mA when streaming video; with the flash on, it can reach 270 mA. So on average, the ESP32-CAM consumes about 120–150 mA at 3.3 V, which is roughly 0.4–0.5 W of power. Since I’m powering it via the [MB](https://it.aliexpress.com/item/1005008888498301.html?pdp_npi=4%40dis%21EUR%211.35%210.94%21%21%2111.08%217.76%21%40210173a317583828404868611eed26%2112000047088917398%21affd%21%21%21&dp=CjwKCAjwisnGBhAXEiwA0zEOR_CE4X0oQlBUEgvSb_xF0ZTw29wcMatZYvj_27kyF_33uSFVq2zynRoCxwgQAvD_BwE%7C0AAAAA_4-di9sl2vv3r1FfKTX-CHvgMEfb%7CCj8KCQjw58PGBhCtARIuAA6hE6gERz3YcHpwMx_VjtXP9o-eqLT_S5vJhnUbhKZhWVcmqmwdgVNxIuYqoRoCv84%7Cv1&cn=it_a_2&gad_source=1&aff_fcid=dd465c2760cc4f098ea2356ee25ef323-1758636388248-00137-_onKPRpM&aff_fsk=_onKPRpM&aff_platform=api-new-product-query&sk=_onKPRpM&aff_trace_key=dd465c2760cc4f098ea2356ee25ef323-1758636388248-00137-_onKPRpM&terminal_id=cbe0758e485645f8b662884cbf5d29ba&afSmartRedirect=y&gatewayAdapt=glo2ita) adapter and USB (5V), the board’s regulator steps this down to 3.3 V, so the actual current from USB will be a bit lower (80–100 mA at 5V, depending on efficiency).
-- HC-SR04 [has a peak current draw](https://makersportal.com/shop/hc-sr04-ultrasonic-distance-sensor) of 15mA.
-- DHT sensor consumes draws on average 1mA and at 5V it's 0.005W (negligible).
+| **Component** | **Typ (mA)** | **Max (mA)** |
+|----------------|--------------|--------------|
+| [Arduino Uno R4 Minima](https://docs.arduino.cc/resources/datasheets/ABX00080-datasheet.pdf) | 33.30 | 36.98 |
+| [ESP32-CAM](https://www.handsontec.com/dataspecs/module/ESP32-CAM.pdf) | 180 | 310 |
+| [HC-SR04](https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf) | 15 | 15 |
+| [DHT21](https://mikroshop.ch/pdf/DHT21.pdf) | 1.5 | 2.1 |
 
-Summing up on average the Wh consumption should be
+Considering max current draw for each component (except for the ESP32CAM where average is considerd) the total power consumption is:
 
-$$ (0.167W+0.45W+0.075W+0.005W) \times 1h \approx 0.70Wh $$
+$$ 36,98 \ \text{mA} + 180 \ \text{mA} + 15 \ \text{mA} + 2,1 \ \text{mA} \approx 234 \ \text{mA} $$
 
-With a USB Power Banks
+With a power supply of $5\text{V}$ the $\text{Wh}$ usage is:
 
-- A 10,000 mAh power bank at 5V will last ~60h runtime.
-- A 5,000 mAh power bank will last ~30h runtime.
+$$ 5\text{V} \times 0,234 \ \text{A} \times 1 \text{h} = 1,17 \ \text{Wh} $$
+
+Considering a power supply of $2 \ \text{Ah}$ @5V $(10 \ \text{Wh})$  cam-ino should last
+
+$$ \frac{10 \ \text{Wh}}{1,17 \ \text{Wh}} \approx 8\text{h} \ 30\text{m} $$
+
+### How I Power It
+
+I use a [Milwuakee M12 2.0Ah](https://www.hbushop.it/it/307--batteria-20ah-.html?cmp_id=21384869713&adg_id=&kwd=&device=c&gad_source=1&gad_campaignid=21374500512&gclid=Cj0KCQjwgKjHBhChARIsAPJR3xdxZlNA78KBWO5i21A_b1dezyT1E-73Q4lDh3nvZW2EYoKrW0qLmPgaAraOEALw_wcB) battery @12V. I supply power to the Arduino Uno R4 Minima's VIN pin and distribute voltage using 5V pin. 
+
+With this configuration cam-ino should lasts $\approx 20\text{h} \ 30\text{m}$.
