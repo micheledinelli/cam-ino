@@ -59,7 +59,7 @@ The two holes at the top are for the HC-SR04 sensor, while the hole at the botto
 
 ### v2
 
-A second version of the case that fits the ESP32CAM is available at [3d-case/hunter-case.stl](3d-case/hunter-case-v2.stl). It's compatible with the V1's cover.
+A second version of the case that fits the ESP32CAM is available at [3d-case/hunter-case.stl](3d-case/hunter-case-v2.stl). It's compatible with the v1's cover.
 
 ## Energy Consumption
 
