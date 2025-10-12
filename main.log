@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.2)  12 OCT 2025 16:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.2)  12 OCT 2025 16:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -384,13 +384,13 @@ Package caption Info: End \AtBeginDocument code.
 File: figures/hunter-camera-top-v1.jpeg Graphic file (type jpg)
 <use figures/hunter-camera-top-v1.jpeg>
 Package pdftex.def Info: figures/hunter-camera-top-v1.jpeg  used on input line 
-28.
+30.
 (pdftex.def)             Requested size: 116.39856pt x 155.19809pt.
 <figures/hunter-camera-front-v1.jpeg, id=84, 4300.065pt x 5733.42pt>
 File: figures/hunter-camera-front-v1.jpeg Graphic file (type jpg)
 <use figures/hunter-camera-front-v1.jpeg>
 Package pdftex.def Info: figures/hunter-camera-front-v1.jpeg  used on input lin
-e 32.
+e 34.
 (pdftex.def)             Requested size: 116.39856pt x 155.19809pt.
 
 
@@ -399,7 +399,7 @@ e 32.
 <figures/schematics.png, id=101, 3521.155pt x 2695.06876pt>
 File: figures/schematics.png Graphic file (type png)
 <use figures/schematics.png>
-Package pdftex.def Info: figures/schematics.png  used on input line 62.
+Package pdftex.def Info: figures/schematics.png  used on input line 64.
 (pdftex.def)             Requested size: 275.94922pt x 211.2097pt.
 
 
@@ -414,29 +414,29 @@ Package pdftex.def Info: figures/schematics.png  used on input line 62.
 File: figures/hunter-camera-front-v2.jpeg Graphic file (type jpg)
 <use figures/hunter-camera-front-v2.jpeg>
 Package pdftex.def Info: figures/hunter-camera-front-v2.jpeg  used on input lin
-e 157.
+e 159.
 (pdftex.def)             Requested size: 84.60297pt x 112.80397pt.
 <figures/hunter-camera-top-v2.jpeg, id=151, 963.6pt x 1284.8pt>
 File: figures/hunter-camera-top-v2.jpeg Graphic file (type jpg)
 <use figures/hunter-camera-top-v2.jpeg>
 Package pdftex.def Info: figures/hunter-camera-top-v2.jpeg  used on input line 
-161.
+163.
 (pdftex.def)             Requested size: 84.60297pt x 112.80397pt.
 <figures/hunter-camera-back-v2.jpeg, id=152, 963.6pt x 1284.8pt>
 File: figures/hunter-camera-back-v2.jpeg Graphic file (type jpg)
 <use figures/hunter-camera-back-v2.jpeg>
 Package pdftex.def Info: figures/hunter-camera-back-v2.jpeg  used on input line
- 165.
+ 167.
 (pdftex.def)             Requested size: 84.60297pt x 112.80397pt.
 <figures/picture_289159.jpg, id=155, 321.2pt x 240.9pt>
 File: figures/picture_289159.jpg Graphic file (type jpg)
 <use figures/picture_289159.jpg>
-Package pdftex.def Info: figures/picture_289159.jpg  used on input line 178.
+Package pdftex.def Info: figures/picture_289159.jpg  used on input line 180.
 (pdftex.def)             Requested size: 170.7792pt x 128.0844pt.
 <figures/picture_429834.jpg, id=156, 321.2pt x 240.9pt>
 File: figures/picture_429834.jpg Graphic file (type jpg)
 <use figures/picture_429834.jpg>
-Package pdftex.def Info: figures/picture_429834.jpg  used on input line 182.
+Package pdftex.def Info: figures/picture_429834.jpg  used on input line 184.
 (pdftex.def)             Requested size: 170.7792pt x 128.0844pt.
  (./main.bbl
 
@@ -485,7 +485,7 @@ ts/cm/cmsy7.pfb></opt/texlive/texdir/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmti10.pfb></opt/texlive/texdir/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt1
 0.pfb></opt/texlive/texdir/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
 
-Output written on main.pdf (8 pages, 2186330 bytes).
+Output written on main.pdf (8 pages, 2186306 bytes).
 PDF statistics:
  246 PDF objects out of 1000 (max. 8388607)
  197 compressed objects within 2 object streams
