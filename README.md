@@ -24,11 +24,11 @@
 
 ### Object Detection
 
-Arduino Uno manages the HC-SR04 ultrasonic sensor and the DHT sensor. The HC-SR04 sensor works by sending sound waves from the transmitter, which then bounce off of an object and then return to the receiver. One can determine how far away something is by measuring time it takes for the sound waves to get back to the sensor. The speed of sound in the air is approximately 331 m/s at 20˚C (0,331 cm/$\mu$s) so in order to calculate the distance of an object one can use
+Arduino Uno manages the HC-SR04 ultrasonic sensor and the DHT sensor. The HC-SR04 sensor works by sending sound waves from the transmitter, which then bounce off of an object and then return to the receiver. One can determine how far away something is by measuring time it takes for the sound waves to get back to the sensor. The speed of sound in the air is approximately 331 m/s at 20˚C (0,331 cm/$\mu\text{s}$) so in order to calculate the distance of an object one can use
 
 $$ d = \frac{(v \times duration)}{2} $$
 
-where $v$ is the speed of sound in cm$/\mu$s and $duration$ is the duration of the sonic burst in $\mu$s. All divided by two because it's a round trip. To better approximate the real distance of an object Arduino Uno manages a DHT sensor that can measure ambient humidity and temperature. While the humidity is not quite negligible for the speed of sound calculation, the temperature is quite relevant. One can adjust the speed of sound calculation (in m/s) in the air parametrizing it with temperature and humidity:
+where $v$ is the speed of sound in cm/$\mu\text{s}$ and $duration$ is the duration of the sonic burst in $\mu\text{s}$. All divided by two because it's a round trip. To better approximate the real distance of an object Arduino Uno manages a DHT sensor that can measure ambient humidity and temperature. While the humidity is not quite negligible for the speed of sound calculation, the temperature is quite relevant. One can adjust the speed of sound calculation (in m/s) in the air parametrizing it with temperature and humidity:
 
 $$ v = 331.4 + (0.6 _ t) + (0.0124 _ h) $$
 
