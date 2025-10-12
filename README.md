@@ -24,20 +24,27 @@
 
 ### Object Detection
 
-Arduino Uno manages the HC-SR04 ultrasonic sensor and the DHT sensor. The HC-SR04 sensor works by sending sound waves from the transmitter, which then bounce off of an object and then return to the receiver. One can determine how far away something is by measuring time it takes for the sound waves to get back to the sensor. The speed of sound in the air is approximately $343 m/s$ at $20\degree \text{C}$ (and $0,314 cm/\mu s$) so in order to calculate the distance of an object one can use
+Arduino Uno manages the HC-SR04 ultrasonic sensor and the DHT sensor. The HC-SR04 sensor works by sending sound waves from the transmitter, which then bounce off of an object and then return to the receiver. One can determine how far away something is by measuring time it takes for the sound waves to get back to the sensor. The speed of sound in the air is approximately 331 m/s at 20˚C (0,331 cm/$\mu$s) so in order to calculate the distance of an object one can use
 
-$$ d = (v \times duration) / 2; $$
+$$ d = \frac{(v \times duration)}{2} $$
 
-where $v$ is the speed of sound in $cm/\mu s$ and duration is the duration of the sonic burst in $\mu s$. All divided by two because it is a round trip.
-To better approximate the real distance of an object Arduino Uno manages a DHT sensor that can measure ambient humidity and temperature. While the humidity is not quite negligible for the speed of sound calculation, the temperature is quite relevant. One can adjust the speed of sound calculation (in $m/s$) in the air parametrizing it with temperature and humidity:
+where $v$ is the speed of sound in cm$/\mu$s and $duration$ is the duration of the sonic burst in $\mu$s. All divided by two because it's a round trip. To better approximate the real distance of an object Arduino Uno manages a DHT sensor that can measure ambient humidity and temperature. While the humidity is not quite negligible for the speed of sound calculation, the temperature is quite relevant. One can adjust the speed of sound calculation (in m/s) in the air parametrizing it with temperature and humidity:
 
-$$ v = 331.4 + (0.6 _ t) + (0.0124 _ h); $$
+$$ v = 331.4 + (0.6 _ t) + (0.0124 _ h) $$
 
 where $t$ and $v$ are temperature and humidity respectively.
 
 ### Trigger Photo Shoot
 
 When an object is quite near (~100cm) Arduino Uno sends a 5v signal to ESP32-CAM using one of its digital pin. Since the ESP32-CAM works with 3.3v the two are connected using a [voltage divider](https://en.wikipedia.org/wiki/Voltage_divider) circuit that lowers the input for the ESP32-CAM at 3.3v. Once the ESP32-CAM receives the trigger signal it starts the capturing process. The photo is taken using a [OV2640](https://blog.arducam.com/ov2640/) camera that shoots at SVGA (800x600) resolution. ESP32-CAM generates random names for the pictures and stores them on a SanDisk Ultra 32GB microSDHC.
+
+## Wirings
+
+<div align=center>
+
+![wirings](./assets/schematics.png)
+
+</div>
 
 ## 3D Model Case
 
@@ -48,19 +55,20 @@ The components are "organized" inside a cool 3D printed box with its own cover. 
 - [3d-case/hunter-case.stl](3d-case/hunter-case.stl)
 - [3d-case/hunter-case-cover.stl](3d-case/hunter-case-cover.stl)
 
-The two holes at the top are for the HC-SR04 sensor, while the hole at the bottom is for the camera. Originally the camera was meant to be a [OV7670](https://futuranet.it/prodotto/ov7670-modulo-telecamera-digitale-per-arduino/?utm_source=Google+Shopping&utm_medium=cpc&utm_campaign=futuranet_gs&gad_source=1&gad_campaignid=17338545980&gclid=CjwKCAjwisnGBhAXEiwA0zEORypyMFtdpkvOQo0-dmvAMKoPEPmqwl3E5K_EAcJn--W6_fJySwDAihoCzq8QAvD_BwE) or a [TTL Serial JPEG Camera](https://www.adafruit.com/product/397) but for many reasons that was not the *case*.
+The two holes at the top are for the HC-SR04 sensor, while the hole at the bottom is for the camera. Originally the camera was meant to be a [OV7670](https://futuranet.it/prodotto/ov7670-modulo-telecamera-digitale-per-arduino/?utm_source=Google+Shopping&utm_medium=cpc&utm_campaign=futuranet_gs&gad_source=1&gad_campaignid=17338545980&gclid=CjwKCAjwisnGBhAXEiwA0zEORypyMFtdpkvOQo0-dmvAMKoPEPmqwl3E5K_EAcJn--W6_fJySwDAihoCzq8QAvD_BwE) or a [TTL Serial JPEG Camera](https://www.adafruit.com/product/397) but for many reasons that was not the _case_.
 
 ### v2
-A second version of the case that fits the ESP32CAM is available at - [3d-case/hunter-case.stl](3d-case/hunter-case-v2.stl). It is compatible with the V1's cover.
+
+A second version of the case that fits the ESP32CAM is available at [3d-case/hunter-case.stl](3d-case/hunter-case-v2.stl). It's compatible with the V1's cover.
 
 ## Energy Consumption
 
-| **Component** | **Typ (mA)** | **Max (mA)** |
-|----------------|--------------|--------------|
-| [Arduino Uno R4 Minima](https://docs.arduino.cc/resources/datasheets/ABX00080-datasheet.pdf) | 33.30 | 36.98 |
-| [ESP32-CAM](https://www.handsontec.com/dataspecs/module/ESP32-CAM.pdf) | 180 | 310 |
-| [HC-SR04](https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf) | 15 | 15 |
-| [DHT21](https://mikroshop.ch/pdf/DHT21.pdf) | 1.5 | 2.1 |
+| **Component**                                                                                | **Typ (mA)** | **Max (mA)** |
+| -------------------------------------------------------------------------------------------- | ------------ | ------------ |
+| [Arduino Uno R4 Minima](https://docs.arduino.cc/resources/datasheets/ABX00080-datasheet.pdf) | 33.30        | 36.98        |
+| [ESP32-CAM](https://www.handsontec.com/dataspecs/module/ESP32-CAM.pdf)                       | 180          | 310          |
+| [HC-SR04](https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf)                  | 15           | 15           |
+| [DHT21](https://mikroshop.ch/pdf/DHT21.pdf)                                                  | 1.5          | 2.1          |
 
 Considering max current draw for each component (except for the ESP32CAM where average is considerd) the total power consumption is:
 
@@ -70,12 +78,10 @@ With a power supply of $5\text{V}$ the $\text{Wh}$ usage is:
 
 $$ 5\text{V} \times 0,234 \ \text{A} \times 1 \text{h} = 1,17 \ \text{Wh} $$
 
-Considering a power supply of $2 \ \text{Ah}$ @5V $(10 \ \text{Wh})$  cam-ino should last
+Considering a power supply of 2 Ah @5V (10 Wh) cam-ino should last
 
 $$ \frac{10 \ \text{Wh}}{1,17 \ \text{Wh}} \approx 8\text{h} \ 30\text{m} $$
 
 ### How I Power It
 
-I use a [Milwuakee M12 2.0Ah](https://www.hbushop.it/it/307--batteria-20ah-.html?cmp_id=21384869713&adg_id=&kwd=&device=c&gad_source=1&gad_campaignid=21374500512&gclid=Cj0KCQjwgKjHBhChARIsAPJR3xdxZlNA78KBWO5i21A_b1dezyT1E-73Q4lDh3nvZW2EYoKrW0qLmPgaAraOEALw_wcB) battery @12V. I supply power to the Arduino Uno R4 Minima's VIN pin and distribute voltage using 5V pin. 
-
-With this configuration cam-ino should last $\approx 20\text{h} \ 30\text{m}$.
+I use a [Milwaukee M12 2.0Ah](https://www.hbushop.it/it/307--batteria-20ah-.html?cmp_id=21384869713&adg_id=&kwd=&device=c&gad_source=1&gad_campaignid=21374500512&gclid=Cj0KCQjwgKjHBhChARIsAPJR3xdxZlNA78KBWO5i21A_b1dezyT1E-73Q4lDh3nvZW2EYoKrW0qLmPgaAraOEALw_wcB) battery @12V. I supply power to the Arduino Uno R4 Minima's VIN pin and distribute voltage using 5V pin. With this battery cam-ino should last $\approx 20\text{h} \ 30\text{m}$.
