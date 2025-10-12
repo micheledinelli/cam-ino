@@ -15,7 +15,7 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: report.tex
+          root_file: main.tex
           working_directory: docs
 
       - name: Deploy
