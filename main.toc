@@ -1,0 +1,15 @@
+\babel@toc {italian}{}\relax 
+\babel@toc {italian}{}\relax 
+\contentsline {section}{\numberline {1}Introduzione}{2}{section.1}%
+\contentsline {section}{\numberline {2}Componenti Utilizzati}{2}{section.2}%
+\contentsline {section}{\numberline {3}Collegamento}{3}{section.3}%
+\contentsline {section}{\numberline {4}Funzionamento}{4}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Rilevamento Oggetti}{4}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Scatto Fotografico}{4}{subsection.4.2}%
+\contentsline {section}{\numberline {5}Consumo Energetico}{5}{section.5}%
+\contentsline {section}{\numberline {6}3D Case}{6}{section.6}%
+\contentsline {subsection}{\numberline {6.1}v1}{6}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}v2}{6}{subsection.6.2}%
+\contentsline {section}{\numberline {7}Sviluppi Futuri}{7}{section.7}%
+\contentsline {section}{\numberline {8}Valutazione e Critica}{7}{section.8}%
+\contentsline {section}{\numberline {9}Conclusioni}{7}{section.9}%

@@ -1,0 +1,24 @@
+\begin{thebibliography}{1}
+
+\bibitem{Arduino_UNO_R4_Minima_Datasheet}
+A.~S.r.l., ``Arduino uno r4 minima datasheet.''
+  \url{https://docs.arduino.cc/resources/datasheets/ABX00080-datasheet.pdf},
+  2025.
+\newblock Accessed: 2025-09-27.
+
+\bibitem{ESP32CAM_Handsontec}
+{Handson Technology}, ``Esp32-cam module datasheet.''
+  \url{https://www.handsontec.com/dataspecs/module/ESP32-CAM.pdf}, n.d.
+\newblock Accessed: 2025-09-27.
+
+\bibitem{HC-SR04_SparkFun}
+S.~Electronics, ``Ultrasonic ranging module hc-sr04 datasheet.''
+  \url{https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf}, n.d.
+\newblock Accessed: 2025-09-27.
+
+\bibitem{HM2301_DHT21_Datasheet}
+H.~W. S.~. HWSensor, ``Hm2301 (dht21) digital‐output humidity and temperature
+  sensor — datasheet.'' \url{https://mikroshop.ch/pdf/DHT21.pdf}, n.d.
+\newblock Accessed: 2025-09-27.
+
+\end{thebibliography}
