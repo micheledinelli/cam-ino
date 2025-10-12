@@ -42,7 +42,7 @@ void loop() {
   Serial.print(lastValidDistance);
   Serial.println(" cm");
 
-  if (distance > 0.0 && distance < 50.0) {
+  if (distance > 0.0 && distance < TRIGGER_DISTANCE_CM) {
     digitalWrite(LED_BUILTIN, HIGH);
     digitalWrite(CAM_TRIG_PIN, HIGH);
     Serial.println("Sent HIGH");
