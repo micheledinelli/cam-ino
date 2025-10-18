@@ -7,8 +7,7 @@
 </div>
 
 <div align=center>
-<img src="assets/picture_289159.jpg" width=250>
-<img src="assets/picture_429834.jpg" width=250>
+<img src="assets/picture_209933.jpg" width=250>
 </div>
 
 ## Components:
