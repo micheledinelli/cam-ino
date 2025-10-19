@@ -8,7 +8,7 @@
 
 int lastState = LOW;
 unsigned long lastTriggerTime = 0;
-const unsigned long debounceDelay = 2000;
+const unsigned long debounceDelay = 5000;
 
 #define TRIGGER_PIN 12
 
@@ -33,6 +33,7 @@ camera_config_t config;
 
 void configInitCamera() {
   camera_config_t config;
+
   config.ledc_channel = LEDC_CHANNEL_0;
   config.ledc_timer = LEDC_TIMER_0;
   config.pin_d0 = Y2_GPIO_NUM;
@@ -51,10 +52,10 @@ void configInitCamera() {
   config.pin_sccb_scl = SIOC_GPIO_NUM;
   config.pin_pwdn = PWDN_GPIO_NUM;
   config.pin_reset = RESET_GPIO_NUM;
+
   config.xclk_freq_hz = 20000000;
   config.frame_size = FRAMESIZE_SVGA;
   config.pixel_format = PIXFORMAT_JPEG;
-  //config.pixel_format = PIXFORMAT_RGB565; // for face detection/recognition
   config.grab_mode = CAMERA_GRAB_WHEN_EMPTY;
   config.fb_location = CAMERA_FB_IN_PSRAM;
   config.jpeg_quality = 12;
@@ -69,24 +70,23 @@ void configInitCamera() {
   if (config.pixel_format == PIXFORMAT_JPEG) {
     if (psramFound()) {
       config.jpeg_quality = 10;
-      config.fb_count = 2;
       config.grab_mode = CAMERA_GRAB_LATEST;
     } else {
-      config.frame_size = FRAMESIZE_SVGA;
       config.fb_location = CAMERA_FB_IN_DRAM;
+      config.frame_size = FRAMESIZE_QVGA;
     }
   }
 
   sensor_t* s = esp_camera_sensor_get();
-  if (s->id.PID == OV3660_PID) {
-    s->set_vflip(s, 1);   
-    s->set_brightness(s, 1);  
-    s->set_saturation(s, -2);
-  }
 
-  if (config.pixel_format == PIXFORMAT_JPEG) {
-    s->set_framesize(s, FRAMESIZE_QVGA);
-  }
+  s->set_brightness(s, 1);
+  s->set_contrast(s, 1);
+  s->set_saturation(s, 1);
+  s->set_sharpness(s, 1);
+  s->set_whitebal(s, 1);
+  s->set_gain_ctrl(s, 1);
+  s->set_exposure_ctrl(s, 1);
+  s->set_awb_gain(s, 1);
 }
 
 String getPictureFilename() {
@@ -111,7 +111,6 @@ void initMicroSDCard() {
 void takeSavePhoto() {
   camera_fb_t* fb = esp_camera_fb_get();
 
-  //Uncomment the following lines if you're getting old pictures
   //esp_camera_fb_return(fb); // dispose the buffered image
   //fb = NULL; // reset to capture errors
   //fb = esp_camera_fb_get();
@@ -137,9 +136,8 @@ void takeSavePhoto() {
   esp_camera_fb_return(fb);
 }
 
-
 void setup() {
-  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);  // disable brownout detector
+  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);
 
   Serial.begin(115200);
   delay(2000);
@@ -155,6 +153,8 @@ void setup() {
   pinMode(TRIGGER_PIN, INPUT_PULLUP);
 
   randomSeed(esp_random());
+
+  delay(5000);
 
   Serial.println("ESP32CAM ready!");
 }
