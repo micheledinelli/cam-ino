@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.2)  19 OCT 2025 10:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.2)  25 OCT 2025 16:03
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -428,16 +428,36 @@ File: figures/hunter-camera-back-v2.jpeg Graphic file (type jpg)
 Package pdftex.def Info: figures/hunter-camera-back-v2.jpeg  used on input line
  167.
 (pdftex.def)             Requested size: 84.60297pt x 112.80397pt.
-<figures/picture_289159.jpg, id=155, 321.2pt x 240.9pt>
-File: figures/picture_289159.jpg Graphic file (type jpg)
-<use figures/picture_289159.jpg>
-Package pdftex.def Info: figures/picture_289159.jpg  used on input line 180.
-(pdftex.def)             Requested size: 170.7792pt x 128.0844pt.
-<figures/picture_429834.jpg, id=156, 321.2pt x 240.9pt>
-File: figures/picture_429834.jpg Graphic file (type jpg)
-<use figures/picture_429834.jpg>
-Package pdftex.def Info: figures/picture_429834.jpg  used on input line 184.
-(pdftex.def)             Requested size: 170.7792pt x 128.0844pt.
+<figures/picture_465628.jpg, id=155, 803.0pt x 602.25pt>
+File: figures/picture_465628.jpg Graphic file (type jpg)
+<use figures/picture_465628.jpg>
+Package pdftex.def Info: figures/picture_465628.jpg  used on input line 180.
+(pdftex.def)             Requested size: 112.81133pt x 84.60849pt.
+<figures/picture_575498.jpg, id=156, 321.2pt x 240.9pt>
+File: figures/picture_575498.jpg Graphic file (type jpg)
+<use figures/picture_575498.jpg>
+Package pdftex.def Info: figures/picture_575498.jpg  used on input line 184.
+(pdftex.def)             Requested size: 112.81377pt x 84.61032pt.
+<figures/picture_610655.jpg, id=157, 803.0pt x 602.25pt>
+File: figures/picture_610655.jpg Graphic file (type jpg)
+<use figures/picture_610655.jpg>
+Package pdftex.def Info: figures/picture_610655.jpg  used on input line 188.
+(pdftex.def)             Requested size: 112.81133pt x 84.60849pt.
+<figures/picture_269336.jpg, id=158, 803.0pt x 602.25pt>
+File: figures/picture_269336.jpg Graphic file (type jpg)
+<use figures/picture_269336.jpg>
+Package pdftex.def Info: figures/picture_269336.jpg  used on input line 193.
+(pdftex.def)             Requested size: 112.81133pt x 84.60849pt.
+<figures/picture_998035.jpg, id=159, 321.2pt x 240.9pt>
+File: figures/picture_998035.jpg Graphic file (type jpg)
+<use figures/picture_998035.jpg>
+Package pdftex.def Info: figures/picture_998035.jpg  used on input line 197.
+(pdftex.def)             Requested size: 112.81377pt x 84.61032pt.
+<figures/picture_917544.jpg, id=160, 803.0pt x 602.25pt>
+File: figures/picture_917544.jpg Graphic file (type jpg)
+<use figures/picture_917544.jpg>
+Package pdftex.def Info: figures/picture_917544.jpg  used on input line 201.
+(pdftex.def)             Requested size: 112.81133pt x 84.60849pt.
  (./main.bbl
 
 [7 <./figures/hunter-camera-front-v2.jpeg> <./figures/hunter-camera-top-v2.jpeg
@@ -455,7 +475,9 @@ T1/cmr/m/n/10 , n.d.  Ac-ces-sed:
 
 )
 
-[8 <./figures/picture_289159.jpg> <./figures/picture_429834.jpg>] (./main.aux)
+[8 <./figures/picture_465628.jpg> <./figures/picture_575498.jpg> <./figures/pic
+ture_610655.jpg> <./figures/picture_269336.jpg> <./figures/picture_998035.jpg> 
+<./figures/picture_917544.jpg>] (./main.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
@@ -464,10 +486,10 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 4254CB9B1792B9DC691068AA4E55669C;1498.
  ) 
 Here is how much of TeX's memory you used:
- 11784 strings out of 467748
- 189800 string characters out of 5429049
- 615414 words of memory out of 5000000
- 40332 multiletter control sequences out of 15000+600000
+ 11812 strings out of 467748
+ 190713 string characters out of 5429049
+ 615405 words of memory out of 5000000
+ 40360 multiletter control sequences out of 15000+600000
  633953 words of font info for 62 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,9n,79p,1324b,585s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -485,10 +507,10 @@ ts/cm/cmsy7.pfb></opt/texlive/texdir/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmti10.pfb></opt/texlive/texdir/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt1
 0.pfb></opt/texlive/texdir/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
 
-Output written on main.pdf (8 pages, 2186303 bytes).
+Output written on main.pdf (8 pages, 2383752 bytes).
 PDF statistics:
- 246 PDF objects out of 1000 (max. 8388607)
+ 250 PDF objects out of 1000 (max. 8388607)
  197 compressed objects within 2 object streams
  34 named destinations out of 1000 (max. 500000)
- 145 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 165 words of extra memory for PDF output out of 10000 (max. 10000000)
 
