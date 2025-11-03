@@ -56,6 +56,13 @@ The two holes at the top are for the HC-SR04 sensor, while the hole at the botto
 
 A second version of the case that fits the ESP32CAM is available at [3d-case/hunter-case.stl](3d-case/hunter-case-v2.stl). It's compatible with the v1's cover.
 
+<div align=center>
+
+<img src="docs/figures/blender-screenshot1.jpeg" height=250>
+<img src="docs/figures/blender-screenshot2.jpeg" height=250>
+
+</div>
+
 ## Energy Consumption
 
 | **Component**                                                                                | **Typ (mA)** | **Max (mA)** |
@@ -81,22 +88,16 @@ $$ \frac{10 \ \text{Wh}}{1,17 \ \text{Wh}} \approx 8\text{h} \ 30\text{m} $$
 
 I use a [Milwaukee M12 2.0Ah](https://www.hbushop.it/it/307--batteria-20ah-.html?cmp_id=21384869713&adg_id=&kwd=&device=c&gad_source=1&gad_campaignid=21374500512&gclid=Cj0KCQjwgKjHBhChARIsAPJR3xdxZlNA78KBWO5i21A_b1dezyT1E-73Q4lDh3nvZW2EYoKrW0qLmPgaAraOEALw_wcB) battery @12V. I supply power to the Arduino Uno R4 Minima's VIN pin and distribute voltage using 5V pin. With this battery cam-ino should last $\approx 20\text{h} \ 30\text{m}$.
 
-## Shots
+## Some Photos
 
 <div align=center>
-<img src="assets/picture_209933.jpg" width=250>
-<img src="assets/picture_269336.jpg" width=250>
-<img src="assets/picture_318715.jpg" width=250>
+<img src="docs/figures/picture_269336.jpg" width=250>
+<img src="docs/figures/picture_465628.jpg" width=250>
+<img src="docs/figures/picture_575498.jpg" width=250>
 </div>
 
 <div align=center>
-<img src="assets/picture_465628.jpg" width=250>
-<img src="assets/picture_469027.jpg" width=250>
-<img src="assets/picture_693383.jpg" width=250>
-</div>
-
-<div align=center>
-<img src="assets/picture_712264.jpg" width=250>
-<img src="assets/picture_917544.jpg" width=250>
-<img src="assets/picture_985961.jpg" width=250>
+<img src="docs/figures/picture_610655.jpg" width=250>
+<img src="docs/figures/picture_917544.jpg" width=250>
+<img src="docs/figures/picture_998035.jpg" width=250>
 </div>
