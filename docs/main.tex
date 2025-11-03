@@ -21,20 +21,24 @@
 \section{Introduzione}
 Questo report descrive lo sviluppo di un prototipo di fototrappola realizzato per il corso Laboratorio Di Making (\href{https://www.unibo.it/it/studiare/insegnamenti-competenze-trasversali-moocs/insegnamenti/insegnamento/2024/479045}{5898}) tenuto durante l'anno accademico 2024/2025 presso l'Università di Bologna. 
 
-Una fototrappola è un dispositivo automatizzato, solitamente mimetizzato che rileva il movimento tramite sensori e scatta fotografie al momento del movimento. Viene utilizzata principalmente per il monitoraggio della fauna selvatica e per la videosorveglianza. È stato scelto come tema del progetto la realizzazione di una fototrappola per curiosità e passione personale, negli ultimi anni ho utilizzato varie fototrappole e ho realizzato, in collaborazione con un fotografo, un \href{https://aculei.xyz}{archivio online} che ne raccogliesse gli scatti. Ho deciso quindi di cimentarmi io stesso nel "costruire" una fototrappola artigianale con le risorse a mia disposizione e le conoscenze fornite dal corso.
+Una fototrappola è un dispositivo automatizzato, solitamente mimetizzato che rileva il movimento tramite sensori e scatta fotografie quando viene percepito un movimento. Viene utilizzata principalmente per il monitoraggio della fauna selvatica e per la videosorveglianza. È stato scelto come tema del progetto la realizzazione di una fototrappola per curiosità e passione personale, negli ultimi anni ho utilizzato varie fototrappole e ho realizzato, in collaborazione con un fotografo, un \href{https://aculei.xyz}{archivio online} che ne raccogliesse gli scatti. Ho deciso quindi di cimentarmi io stesso nel "costruire" una fototrappola con le risorse a mia disposizione e le conoscenze fornite dal corso.
 
 \begin{figure}[htpb]
 \centering
-\begin{subfigure}{.45\textwidth}
+\begin{subfigure}{.327\textwidth}
     \centering
-    \includegraphics[width=\linewidth,height=\linewidth,keepaspectratio=true]{figures/hunter-camera-top-v1.jpeg}
+    \includegraphics[width=\linewidth,height=\linewidth,keepaspectratio=true]{figures/hunter-camera-front-v2.jpeg}
 \end{subfigure}
-\begin{subfigure}{.45\textwidth}
+\begin{subfigure}{.327\textwidth}
   \centering
-  \includegraphics[width=\linewidth,height=\linewidth,keepaspectratio=true]{figures/hunter-camera-front-v1.jpeg}
+  \includegraphics[width=\linewidth,height=\linewidth,keepaspectratio=true]{figures/hunter-camera-top-v2.jpeg}
 \end{subfigure}
-\caption{La fototrappola in versione embrionale.}
-\label{fig:hunter-camera-v1}
+\begin{subfigure}{.327\textwidth}
+  \centering
+  \includegraphics[width=\linewidth,height=\linewidth,keepaspectratio=true]{figures/hunter-camera-back-v2.jpeg}
+\end{subfigure}
+\caption{Il prototipo sviluppato.}
+\label{fig:hunter-camera-v2}
 \end{figure}
 
 \section{Componenti Utilizzati}
@@ -54,10 +58,11 @@ Il progetto è stato realizzato utilizzando i seguenti componenti:
         \item $1 \times 1k\Omega \pm 5\%$
         \item $1 \times 2k\Omega \pm 5\%$
     \end{itemize}
+    \item Batteria \href{https://www.hbushop.it/it/307--batteria-20ah-.html?cmp_id=21384869713&adg_id=&kwd=&device=c&gad_source=1&gad_campaignid=21374500512&gclid=Cj0KCQjwgKjHBhChARIsAPJR3xdxZlNA78KBWO5i21A_b1dezyT1E-73Q4lDh3nvZW2EYoKrW0qLmPgaAraOEALw_wcB}{Milwaukee M12} da 2 Ah e 12V
 \end{itemize}
 
 \section{Collegamento}
-Il collegamento dei componenti è mostrato in Figura \ref{fig:wiring} (realizzata con \href{https://circuitcanvas.com/}{circuitcanvas}) . La board Arduino Uno R4 Minima ha collegati i pin 5V e GND sui binari esterni della breadboard. Il sensore HC-SR04 ha i pin VCC e GND collegati sui binari esterni della breadboard, mentre i pin ECHO e TRIG sono collegati rispettivamente ai pin D12 e D11 della board Arduino Uno R4 Minima. Il sensore DHT21 ha collegati i due pin "+" e "-" ai binari esterni della breadboard, mentre il pin OUT è collegato al pin D2 della board Arduino Uno R4 Minima \footnote{Nella rappresentazione dei collegamenti mostrata in Figura \ref{fig:wiring} il sensore DHT21 presenta 4 pin, questo perché il software per il disegno dello schema non aveva a disposizione la rappresentazione del sensore DHT21 a 3 pin.}. La board ESP32-CAM ha il pin GPIO12 collegato al pin D7 della board Arduino Uno R4 Minima attraversando due resistenze da $1k\Omega \pm 5\%$ e $2k\Omega \pm 5\%$. Uno dei pin GND della board ESP32-CAM è collegato al pin GND della board Arduino Uno R4 Minima. La struttura del circuito tra la board ESP32-CAM e la board Arduino Uno R4 Minima è un partitore di tensione che permette il collegamento tra ESP32-CAM (3.3V) e Arduino Uno R4 Minima (5V).
+Il collegamento dei componenti è mostrato in Figura \ref{fig:wiring} (realizzata con \href{https://circuitcanvas.com/}{circuitcanvas}) . La board Arduino Uno R4 Minima ha collegati i pin 5V e GND sui binari esterni della breadboard. Il sensore HC-SR04 ha i pin VCC e GND collegati sui binari esterni della breadboard, mentre i pin ECHO e TRIG sono collegati rispettivamente ai pin D12 e D11 della board Arduino Uno R4 Minima. Il sensore DHT21 ha collegati i due pin "+" e "-" ai binari esterni della breadboard, mentre il pin OUT è collegato al pin D2 della board Arduino Uno R4 Minima \footnote{Nella rappresentazione dei collegamenti mostrata in Figura \ref{fig:wiring} il sensore DHT21 presenta 4 pin, questo perché il software per il disegno dello schema non aveva a disposizione la rappresentazione del sensore DHT21 a 3 pin.}. La board ESP32-CAM ha il pin GPIO12 collegato al pin D7 della board Arduino Uno R4 Minima attraversando due resistenze da $1k\Omega \pm 5\%$ e $2k\Omega \pm 5\%$. Uno dei pin GND della board ESP32-CAM è collegato al pin GND della board Arduino Uno R4 Minima. Il collegamento tra la board ESP32-CAM e la board Arduino Uno R4 Minima è un partitore di tensione che garantisce il corretto funzionamento di ESP32-CAM che lavora a 3.3V mentre Arduino Uno R4 Minima a 5V.
 
 \begin{figure}[htpb]
     \centering
@@ -67,36 +72,30 @@ Il collegamento dei componenti è mostrato in Figura \ref{fig:wiring} (realizzat
 \end{figure}
 
 Un partitore di tensione è una tipologia di circuito che genera un voltaggio $\text{V}_\text{out}$ che è una frazione del voltaggio in input $\text{V}_\text{in}$. Per calcolare $\text{V}_\text{out}$ è possibile utilizzare la formula \[ \text{V}_\text{out} = \frac{R_2}{(R_1+R_2)} \times \text{V}_\text{in} \] Dove $R_1$ e $R_2$ sono i valori delle due resistenze. Utilizzando i dati specifici di questo progetto si ottiene \[ \text{V}_\text{out} = \frac{2k\Omega}{(1k\Omega+2k\Omega)} \times 5\text{V} = \frac{2}{3} \times 5\text{V} = 3.\overline{3}\text{V} \]
-In quanto $\text{V}_\text{in}=5\text{V}$ dato dall'input fornito dal pin D7. In questo modo il pin GPIO12 della board ESP32-CAM riceve circa $3.3\text{V}$ in ingresso rispettando il corretto voltaggio richiesto.
+In quanto $\text{V}_\text{in}=5\text{V}$ dato dall'input fornito dal pin D7. In questo modo il pin GPIO12 della board ESP32-CAM riceve circa $3,3\text{V}$ in ingresso rispettando il corretto voltaggio richiesto.
 
 \section{Funzionamento}
 \subsection{Rilevamento Oggetti}
 
-L'Arduino Uno gestisce il sensore ultrasonico HC-SR04 e il sensore DHT21. Il sensore HC-SR04 presenta un trasmettitore e un ricevitore. Funziona inviando onde sonore dal trasmettitore, le quali rimbalzano su un oggetto e ritornano al ricevitore. È quindi possibile determinare quanto un oggetto sia distante misurando il tempo che le onde sonore impiegano per ritornare al sensore.  
-
-La velocità del suono nell'aria è circa pari a $331,4 \,\text{m/s}$ alla temperatura di $20^{\circ}\text{C}$ (ossia $0,331 \,\text{cm}/\mu s$). Per calcolare la distanza di un oggetto si può utilizzare la formula:
+L'Arduino Uno gestisce il sensore a ultrasuoni HC-SR04 e il sensore DHT21. Il sensore HC-SR04 presenta un trasmettitore e un ricevitore. Funziona inviando onde sonore dal trasmettitore, le quali rimbalzano su un oggetto e ritornano al ricevitore. È possibile determinare quanto un oggetto sia distante misurando il tempo che le onde sonore impiegano per ritornare al sensore. Considerando che la velocità del suono nell'aria è circa pari a $331,4 \,\text{m/s}$ alla temperatura di $20^{\circ}\text{C}$ (ossia $0,331 \,\text{cm}/\mu s$), per calcolare la distanza di un oggetto si può utilizzare la formula:
 
 \[
 d = \frac{v \times \text{duration}}{2}
 \]
 dove $v$ è la velocità del suono in $\text{cm}/\mu s$ e \textit{duration} è la durata dell'impulso sonoro in $\mu s$.  
 La divisione per due è necessaria perché il segnale compie un tragitto di andata e ritorno.  
-Per stimare meglio la distanza reale, la board Arduino Uno R4 Minima utilizza un sensore DHT21 che misura umidità e temperatura ambientale. Mentre l'umidità ha un'influenza minima sul calcolo della velocità del suono, la temperatura è molto rilevante.  
-Si può infatti correggere la velocità del suono in aria (in $\text{m/s}$) parametrizzandola con temperatura $t$ e umidità $h$:
+Per stimare meglio la distanza reale, la board Arduino Uno R4 Minima utilizza un sensore DHT21 che misura umidità e temperatura ambientale. Mentre l'umidità ha un'influenza minima sul calcolo della velocità del suono, la temperatura è abbastanza rilevante. Si può infatti correggere la velocità del suono in aria (in $\text{m/s}$) parametrizzandola per temperatura $t$ e umidità $h$:
 
 \[
 v = 331.4 + (0.6 \times t) + (0.0124 \times h)
 \]
-Per questo motivo è stato utilizzato un sensore di temperature e umidità come il DHT21.
 
 \subsection{Scatto Fotografico}
-Quando un oggetto si trova molto vicino ($\approx100 \ \text{cm}$), la board Arduino Uno R4 Minima invia un segnale utilizzando il pin D7 all’ESP32-CAM che lo riceve sul pin GPIO12.
-Poiché l'ESP32-CAM lavora con una tensione di $3.3\text{V}$, i due dispositivi vengono collegati mediante un partitore di tensione che riduce il segnale da $5\text{V}$ a $3.3\text{V}$.  
-
-Una volta ricevuto il segnale di trigger, l’ESP32-CAM avvia il processo di acquisizione dell'immagine.  La foto viene scattata utilizzando una camera OV2640 che cattura immagini a risoluzione SVGA ($800 \times 600$).  L’ESP32-CAM genera nomi casuali per le foto e le memorizza su una scheda microSDHC SanDisk Ultra da 32 GB formattata in FAT32.
+Quando un oggetto si trova abbastanza vicino ($\approx150 \ \text{cm}$), la board Arduino Uno R4 Minima invia un segnale utilizzando il pin D7 all’ESP32-CAM che lo riceve sul pin GPIO12.
+Una volta ricevuto il segnale, l’ESP32-CAM avvia il processo di acquisizione dell'immagine. La foto viene scattata utilizzando una camera OV2640 che cattura immagini a risoluzione SVGA ($800 \times 600$). L’ESP32-CAM genera nomi casuali per le foto e le memorizza su una scheda microSDHC SanDisk Ultra da 32 GB formattata in FAT32.
 
 \section{Consumo Energetico}
-Per capire di quanta corrente necessita il progetto è possibile consultare il datasheet di ciascun componente e verificare il valore massimo della corrente richiesta da ognuno, quindi sommare i valori. I dati sono raccolti in Tabella \ref{table:conusmi}.
+Per capire di quanta corrente necessita il progetto e stimarne un limite superiore è possibile consultare il datasheet di ciascun componente e verificare il valore massimo della corrente richiesta da ognuno, quindi sommare i valori. I dati sono raccolti in Tabella \ref{table:conusmi}.
 
 \begin{table}[htpb]
 \centering
@@ -120,14 +119,31 @@ Utilizzando sempre il consumo massimo dei componenti (eccetto per ESP32-CAM) si 
 \[ 36,98 \ \text{mA} + 180 \ \text{mA} + 15 \ \text{mA} + 2,1 \ \text{mA} \approx 234 \ \text{mA} \]
 Il consumo in Wh si ricava moltiplicando il consumo di corrente per il voltaggio. Considerando un voltaggio pari a $5$V si ottiene:
 \[ 5\text{V} \times 0,234 \ \text{A} \times 1 \text{h} = 1,17 \ \text{Wh}\]
-Ad esempio, supponendo di utilizzare una batteria da $2000$mAh a un voltaggio di $5$V, quindi con capacità di $5\text{V} \times 2 \ \text{Ah} = 10 \ \text{Wh}$ il progetto avrebbe un'autonomia di 
+Ad esempio, supponendo di utilizzare una batteria da $2000$ mAh con tensione a $5$V, quindi con capacità di $5\text{V} \times 2 \ \text{Ah} = 10 \ \text{Wh}$ la fototrappola avrebbe un'autonomia di 
 
 \[ \frac{10 \ \text{Wh}}{1,17 \ \text{Wh}} \approx 8\text{h} \ 30\text{m} \]
 
-È stato scelto di utilizzare una batteria \href{https://www.hbushop.it/it/307--batteria-20ah-.html?cmp_id=21384869713&adg_id=&kwd=&device=c&gad_source=1&gad_campaignid=21374500512&gclid=Cj0KCQjwgKjHBhChARIsAPJR3xdxZlNA78KBWO5i21A_b1dezyT1E-73Q4lDh3nvZW2EYoKrW0qLmPgaAraOEALw_wcB}{Milwaukee M12} da 2.0Ah a 12V che permette un'autonomia di $\approx 20\text{h} \ 30\text{m}$. La batteria è collegata al pin VIN di Arduino Uno R4 Minima che utilizza un regolatore di voltaggio interno che lo porta a 5V. La board ESP32CAM, così come i sensori usufruiscono dei 5V erogati dal pin 5V di Arduino Uno R4 Minima. A sua volta ESP32CAM ha un regolatore di voltaggio che lo porta a 3,3V.
+È stato scelto di utilizzare una batteria \href{https://www.hbushop.it/it/307--batteria-20ah-.html?cmp_id=21384869713&adg_id=&kwd=&device=c&gad_source=1&gad_campaignid=21374500512&gclid=Cj0KCQjwgKjHBhChARIsAPJR3xdxZlNA78KBWO5i21A_b1dezyT1E-73Q4lDh3nvZW2EYoKrW0qLmPgaAraOEALw_wcB}{Milwaukee M12} da 2 Ah a 12V che permette un'autonomia di $\approx 20\text{h} \ 30\text{m}$. La batteria è collegata al pin VIN di Arduino Uno R4 Minima che utilizza un regolatore di voltaggio interno che lo porta a 5V. La board ESP32CAM, così come i sensori usufruiscono dei 5V erogati dal pin 5V di Arduino Uno R4 Minima. A sua volta ESP32CAM ha un regolatore di voltaggio che lo porta a 3,3V.
 
 \section{3D Case}
 Per contenere i componenti e organizzare il progetto è stata stampata una scatola con coperchio utilizzando stampa FDM. Per realizzare il modello 3D è stato utilizzato il software \href{https://www.ptc.com/it/products/creo}{Creo}, per produrre il file .gcode è stato utilizzato il software per slicing \href{https://www.simplify3d.com/}{Simplify3d} e come stampante la \href{https://www.3dwasp.com/stampante-3d-veloce-delta-wasp-2040-turbo2/}{Delta Wasp 2040 Turbo2} con filamento PLA basic bianco da 1.75mm. Ringrazio mio cugino, abilissimo \textit{maker}, che mi ha prestato i software, la stampante e la sua esperienza.
+
+\begin{figure}[htpb]
+\centering
+\begin{subfigure}{0.6\textwidth}
+    \centering
+    \includegraphics[width=\linewidth, keepaspectratio]{figures/blender-screenshot1.jpeg}
+\end{subfigure}
+
+\begin{subfigure}{0.6\textwidth}
+    \centering
+    \includegraphics[width=\linewidth, keepaspectratio]{figures/blender-screenshot2.jpeg}
+\end{subfigure}
+
+\caption{Wireframe della scatola 3D.}
+\label{fig:hunter-camera-v2}
+\end{figure}
+
 
 \subsection{v1}
 I file `.stl` sono disponibili ai seguenti link e possono essere stampati in poche ore.
@@ -145,33 +161,18 @@ oppure una \href{https://www.adafruit.com/product/397}{TTL Serial JPEG Camera}, 
 Una seconda versione del case, compatibile con l’ESP32CAM, è disponibile al segeunte link \href{https://github.com/micheledinelli/cam-ino/3d-case/hunter-case-v2.stl}{hunter-case-v2.stl}. È compatibile con il coperchio della versione v1.
 
  \section{Sviluppi Futuri}
-In futuro è prevista la sostituzione della board ESP32CAM e sostituirla con una fotocamera seriale e un modulo per la lettura e scrittura su microSD. Il motivo è dovuto dall'eccessivo consumo energetico di ESP32CAM, che nasce per funzioni diverse e più varie rispetto all'utilizzo fatto all'interno di questo progetto. 
+In futuro è prevista la sostituzione della board ESP32CAM e sostituirla con una fotocamera seriale e un modulo per la lettura e scrittura su microSD. Il motivo è dovuto dall'eccessivo consumo energetico di ESP32CAM, che nasce per funzioni diverse e più varie rispetto all'utilizzo fatto all'interno di questo progetto.
+
+È possibile migliorare il rilevamento degli animali utilizzando sensori come il TOF10120 che funziona utilizzando laser infrarossi ed è nettamente più preciso del sensore HC-SR04. Viene venduto ovviamente ad un costo maggiore.
 
 Sarebbe anche possibile utilizzare un tool per il design di un PCB shield che renderebbe il progetto compatto e permetterebbe un design 3D più semplice della scatola. 
 
 \section{Valutazione e Critica}
-La fotocamera utilizzata (OV2640) come la maggior parte delle fotocamere presenti sul mercato, è dotata di un filtro a infrarossi. Questo è necessario perché aiuta a rimuovere il rumore causato dalla banda dello spettro elettromagnetico degli infrarossi che potrebbe interferire con il valore letto dal sensore che trasforma l'energia elettrica in valori numerici da associare ai pixel. È possibile rimuovere il filtro IR presente sulla OV2640 ma il procedimento rischia di danneggiare la fotocamera se non effettuato con molta attenzione e precisione. La presenza del filtro non permette di ottenere immagini nitide con scarsa luminosità nelle ore notturne, il che limita progetto in termini di tipologia di animali che possono essere ritratti.
+La fotocamera utilizzata (OV2640) che come la maggior parte delle fotocamere presenti sul mercato, è dotata di un filtro a infrarossi. Questo è necessario perché aiuta a rimuovere il rumore causato dalla banda dello spettro elettromagnetico degli infrarossi che potrebbe interferire con il valore letto dal sensore che trasforma l'energia elettrica in valori numerici da associare ai pixel. È possibile rimuovere il filtro IR presente sulla OV2640 ma il procedimento rischia di danneggiare la fotocamera se non effettuato con molta attenzione e precisione. La presenza del filtro non permette di ottenere immagini nitide con scarsa luminosità nelle ore notturne, il che limita progetto in termini di tipologia di animali che possono essere ritratti.
 
-\begin{figure}[htpb]
-\centering
-\begin{subfigure}{.327\textwidth}
-    \centering
-    \includegraphics[width=\linewidth,height=\linewidth,keepaspectratio=true]{figures/hunter-camera-front-v2.jpeg}
-\end{subfigure}
-\begin{subfigure}{.327\textwidth}
-  \centering
-  \includegraphics[width=\linewidth,height=\linewidth,keepaspectratio=true]{figures/hunter-camera-top-v2.jpeg}
-\end{subfigure}
-\begin{subfigure}{.327\textwidth}
-  \centering
-  \includegraphics[width=\linewidth,height=\linewidth,keepaspectratio=true]{figures/hunter-camera-back-v2.jpeg}
-\end{subfigure}
-\caption{La fototrappola con la nuova scatola e alimentazione con batteria da 12V e 2Ah.}
-\label{fig:hunter-camera-v2}
-\end{figure}
+Gli scatti ottenuti dimostrano il funzionamento della fototrappola ma non sono totalmente soddisfacenti per quanto riguarda la qualità delle immagini. Il sensore della camera OV2640 genera direttamente file JPEG compressi e può arrivare a una risoluzione di circa 2 megapixel (UXGA 1600x1200). In teoria la ESP32CAM dotata di 520KB di SRAM e 4MB di PSRAM \footnote{La PSRAM viene usata da ESP32CAM come frame buffer.} dovrebbe poter gestire la massima risoluzione. In realtà la cattura dell'immagine è risultata enormemente problematica ad alte risoluzioni, causando spesso crash-loop. Le motivazioni possono essere svariate e il risultato è stato affidarsi a una risoluzione più bassa (SVGA 800x600) per garantire il corretto funzionamento al prezzo di foto meno nitide.
 
 \section{Conclusioni}
-È stato realizzato un prototipo funzionante di fototrappola con autonomia fino a 20 ore e una scatola con coperchio stampata in 3D per organizzare i sensori e le board utilizzate. Il codice sorgente, la documentazione e i modelli 3D sono open source e rilasciati con licenza \href{https://www.gnu.org/licenses/gpl-3.0.html}{GPL-3.0}. La repository del progetto è disponibile al link \href{https://github.com/micheledinelli/cam-ino/}{micheledinelli/cam-ino}.
 
 \begin{figure}[htpb]
 \centering
@@ -204,6 +205,9 @@ La fotocamera utilizzata (OV2640) come la maggior parte delle fotocamere present
 \caption{Alcuni scatti.}
 \label{fig:shoots}
 \end{figure}
+
+È stato realizzato un prototipo funzionante di fototrappola con autonomia fino a 20 ore e una scatola con coperchio stampata in 3D per organizzare i sensori e le board utilizzate. Il codice sorgente, la documentazione e i modelli 3D sono open source e rilasciati con licenza \href{https://www.gnu.org/licenses/gpl-3.0.html}{GPL-3.0}. La repository del progetto è disponibile al link \href{https://github.com/micheledinelli/cam-ino/}{micheledinelli/cam-ino}.
+
 
 \renewcommand{\refname}{Riferimenti}
 \bibliographystyle{ieeetr}
